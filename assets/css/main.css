@@ -1,0 +1,31 @@
+/*****************
+	Shatre Code CSS
+*****************/
+ @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+#main-content-share-code{
+	background-color: #000;
+	padding-top: 1em;
+	padding-left: 8px;
+	position: relative;
+}
+#code{
+    font-family: 'Source Code Pro', sans-serif;
+	width: 100%;
+	min-height: 400px;
+	border: none;
+	outline: 0;
+	background-color: #000;
+	color: #c5c5c5;
+	resize: none;
+	font-size: 14px;
+	overflow: hidden;
+}
+.nav{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+/*****************
+ Fin Shatre Code CSS
+*****************/
