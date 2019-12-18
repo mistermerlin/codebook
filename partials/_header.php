@@ -15,6 +15,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
     <link rel="stylesheet" href="assets/css/main.css" >
+        <link rel="stylesheet" href="assets/css/prettify.css" >
+
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/4e7cbde93e.js" crossorigin="anonymous"></script>

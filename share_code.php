@@ -9,17 +9,37 @@
 	require('includes/functions.php');
 	include("partials/_header.php");
 
+	if (!empty($_GET['id'])) {
+		$data = find_code_by_id($_GET['id']);
+
+	
+			$data = $q->fetch(PDO::FETCH_ODJ);
+
+			if (!$data) {
+						
+					$code = "";
+			} else{
+				
+				$code = $data->code;	
+			}
+		
+	} else {
+		$code = "";
+	}
+
+
 	//Si le formulaire est soumis
 	if (isset($_POST['save'])) {
 
 		if (not_empty(['code'])) {
 			extract($_POST);
-			$q = $db->prepare('INSERT INTO codes(id,code) VALUES (NULL,:code)');
+			$q = $db->prepare('INSERT INTO codes(code) VALUES (?)');
 			$success = $q->execute([$code]);
 
 			if ($success) {
 				//Affiche le code source
-
+				$id = $db->lastInsertId();
+				redirect('show_code.php?id='.$id);
 
 
 			}else{
@@ -30,9 +50,9 @@
 			}
 		
 		
-	}else{
+		}else{
 
-		redirect("share_code.php");
+			redirect("share_code.php");
 	}
 	}
 

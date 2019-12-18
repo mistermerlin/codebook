@@ -14,18 +14,16 @@
 
 			extract($_POST);
 
-			$q = $db->prepare("SELECT id,name,pseudo FROM users 
+			$q = $db->prepare("SELECT id,name,pseudo, password AS hashed_password FROM users 
 				WHERE (pseudo = :identifiant OR email = :identifiant) 
-				AND password = :password AND active = '1'");
+				 AND active = '1'");
 
 			$q->execute([
-				'identifiant'=> $identifiant,
-					'password'=> sha1($password)
+				'identifiant'=> $identifiant
 				]);
-			$userHasBeenFound = $q->rowCount();
-
-			if ($userHasBeenFound ) {
 				$user = $q->fetch(PDO::FETCH_OBJ);
+
+			if ($user && bcrypt_verify_password($password, $user ->hashed_password)) {
 
 				$_SESSION['user_id'] = $user->id ;
 				$_SESSION['pseudo'] = $user->pseudo ;

@@ -7,7 +7,32 @@
 			}
 				}
 		}
+		
+/******************* Hashage de mot de passe ************************/
+		//Hashage du mot de passe
+
+	if (!function_exists('bcrypt_hash_password')){
+		function bcrypt_hash_password($value, $options = array()){
+			$cost = isset($options['rounds']) ? $options['rounds'] : 10;
+			$hash = password_hash($value, PASSWORD_BCRYPT, array('cost' => $cost));
+
+				if ($hash === false)
+					{				
+					throw new Exception("Bcript Hashing n'est pas supporté");
+					}
+
+					return $hash;
+				}
+		}
+
+	//Verification du mot de passe
+		if (!function_exists('bcrypt_verify_password')){
+		function bcrypt_verify_password($value, $hashedValue){
 			
+			return password_verify($value, $hashedValue);
+				}
+		}
+/**********************Fin du Hashage de mot de passe******************/
  //Avatar URL
 	if (!function_exists('get_avatar_url')){
 			function get_avatar_url($email){
@@ -20,11 +45,20 @@
 			function get_session($email){
 				if ($email) {
 					return !empty($_SESSION[$email]) 
-					? /*e*/($_SESSION[$email] )
+					? e($_SESSION[$email] )
 					: null;
 				}
 					}
 			}
+
+			//chercher la langue(facultatif)
+	if (!function_exists('get_current_locale')) {
+			function get_current_locale(){
+				
+				return $_SESSION['locale'];
+					}
+			}
+
 
 		//si l'utilisateur est connecté
 	if (!function_exists('is_logged_in')){
@@ -45,6 +79,24 @@
 				return $data;
 			}
 		}
+		//Find Code by ID
+		if (!function_exists('find_code_by_id')) {
+			function find_code_by_id($id){
+			
+				global $db;
+
+			$q = $db->prepare('SELECT code FROM codes WHERE id = ?');
+			 $q->execute([$id]);
+
+		
+			$data = $q->fetch(PDO::FETCH_ODJ);
+
+				$q->closeCursor();
+				return $data;
+			}
+		}
+				
+			
 		//si e formulaire n'est pas vide
 
 	if (!function_exists('not_empty')) {

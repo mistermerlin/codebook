@@ -37,7 +37,7 @@
 			}
 			if (Count($errors) == 0) {
 				//envoie de mail d'activation 
-				$password = sha1($password);
+				$password = bcrypt_hash_password($password);
 				$to = $email;
 				$subject = WEBSITE_NAME. "- ACTIVATION DE COMPTE";
 				$token = sha1($pseudo.$email.$password);

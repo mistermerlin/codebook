@@ -5,10 +5,10 @@
 	<div id="main-content">
 		<div id="main-content-share-code">
 			<form action="" autocomplete="off">
-				<textarea name="code" id="code" required="required" placeholder="Entrer du codes ici ..."></textarea>
+				<textarea name="code" id="code" required="required" placeholder="Entrer du codes ici ..."><?= e($code) ?></textarea>
 				<div class="btn-group nav">
 				<a href="share_code.php" class="btn btn-danger">Tout effacer</a>
-				<input type="submit" name="save" value="Enregistrer" class="btn btn-success">
+				<input type="submit" id="save" name="save" value="Enregistrer" class="btn btn-success">
 				</div>
 			</form>
 		</div>
